@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/screens/favorite_news.dart';
-import 'package:news_app/app/screens/top_headlines_news.dart';
+import 'package:news_app/app/screens/news.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);

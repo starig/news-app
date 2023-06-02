@@ -1,31 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/app/components/news_item.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/scale.dart';
-import 'package:news_app/app/state/everything/everything_cubit.dart';
 import 'package:news_app/app/state/favorites/favorites_cubit.dart';
+import 'package:news_app/app/state/news/news_cubit.dart';
 
-class EverythingNewsList extends StatefulWidget {
-  const EverythingNewsList({Key? key}) : super(key: key);
+class HeadlineNewsList extends StatefulWidget {
+  const HeadlineNewsList({Key? key}) : super(key: key);
 
   @override
-  State<EverythingNewsList> createState() => _EverythingNewsListState();
+  State<HeadlineNewsList> createState() => _HeadlineNewsListState();
 }
 
-class _EverythingNewsListState extends State<EverythingNewsList> {
+class _HeadlineNewsListState extends State<HeadlineNewsList> {
   late Future _func;
+  Timer? _timer;
   final ScrollController _scrollController = ScrollController();
 
+  void startPeriodicRequest() {
+    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      context.read<NewsCubit>().checkForChanges();
+    });
+  }
 
   _loadMore() async {
-    await context.read<EverythingCubit>().loadMoreNews();
+    await context.read<NewsCubit>().loadMoreNews();
   }
 
   @override
   void initState() {
     super.initState();
-    _func = context.read<EverythingCubit>().getInitialList();
+    _func = context.read<NewsCubit>().getInitialList();
+    // startPeriodicRequest();
     _scrollController.addListener(() async {
       if (_scrollController.offset >=
           _scrollController.position.maxScrollExtent &&
@@ -37,6 +46,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
 
   @override
   void dispose() {
+    _timer?.cancel();
     _scrollController.dispose();
     super.dispose();
   }
@@ -59,7 +69,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
               ),
             );
           } else {
-            return BlocBuilder<EverythingCubit, EverythingState>(
+            return BlocBuilder<NewsCubit, NewsState>(
               builder: (context, state) {
                 return SingleChildScrollView(
                   controller: _scrollController,
