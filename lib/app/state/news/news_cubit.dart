@@ -12,6 +12,7 @@ class NewsCubit extends Cubit<NewsState> {
           isLoadingMore: false,
           isFinished: false,
           page: 2,
+          selectedIndex: 0,
         ));
 
   final dio = Dio();
@@ -79,13 +80,20 @@ class NewsCubit extends Cubit<NewsState> {
             throw Exception('Error');
           }
         }
-        emit(state.copyWith(news: state.news, isLoadingMore: state.isLoadingMore));
+        emit(state.copyWith(
+            news: state.news, isLoadingMore: state.isLoadingMore));
       }
     } catch (e) {
       state.isLoadingMore = false;
       state.isFinished = true;
-      emit(state.copyWith(news: state.news, isLoadingMore: state.isLoadingMore));
+      emit(
+          state.copyWith(news: state.news, isLoadingMore: state.isLoadingMore));
       throw Exception(e);
     }
+  }
+
+  setSelectedIndex(int index) {
+    state.selectedIndex = index;
+    emit(state.copyWith(selectedIndex: state.selectedIndex));
   }
 }

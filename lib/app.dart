@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/app/components/news_item.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/screens/new_detail.dart';
 import 'package:news_app/app/screens/news.dart';

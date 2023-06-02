@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/helpers.dart';
 import 'package:news_app/app/config/scale.dart';

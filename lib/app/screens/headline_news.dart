@@ -64,7 +64,7 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
           if (snapshot.hasError) {
             return Center(
               child: Text(
-                'Error during loading data',
+                'Error during loading data ${snapshot.error}',
                 style: TextStyle(color: red, fontWeight: FontWeight.w600),
               ),
             );
