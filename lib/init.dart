@@ -20,7 +20,7 @@ class _InitialScreenState extends State<InitialScreen> {
   }
 
   static const List<Widget> _screens = <Widget>[
-    TopHeadlinesScreen(),
+    NewsScreen(),
     FavoriteNewsScreen()
   ];
 

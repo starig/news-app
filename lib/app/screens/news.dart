@@ -3,14 +3,14 @@ import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/screens/everything_news.dart';
 import 'package:news_app/app/screens/headline_news.dart';
 
-class TopHeadlinesScreen extends StatefulWidget {
-  const TopHeadlinesScreen({Key? key}) : super(key: key);
+class NewsScreen extends StatefulWidget {
+  const NewsScreen({Key? key}) : super(key: key);
 
   @override
-  State<TopHeadlinesScreen> createState() => _TopHeadlinesScreenState();
+  State<NewsScreen> createState() => _NewsScreenState();
 }
 
-class _TopHeadlinesScreenState extends State<TopHeadlinesScreen> {
+class _NewsScreenState extends State<NewsScreen> {
   int _selectedIndex = 0;
 
   @override

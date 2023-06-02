@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/app/components/news_item.dart';
+import 'package:news_app/app/components/refresh_widget.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/scale.dart';
 import 'package:news_app/app/state/everything/everything_cubit.dart';
@@ -61,8 +62,11 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
           } else {
             return BlocBuilder<EverythingCubit, EverythingState>(
               builder: (context, state) {
-                return SingleChildScrollView(
-                  controller: _scrollController,
+                return RefreshWidget(
+                  onRefresh: () async {
+                    await context.read<EverythingCubit>().getInitialList();
+                  },
+                  scrollController: _scrollController,
                   child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

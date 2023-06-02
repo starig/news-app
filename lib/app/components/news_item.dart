@@ -39,77 +39,91 @@ class _NewsItemState extends State<NewsItem> {
 
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        return Container(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.network(
-                widget.imageUrl,
-                width: scale(100),
-                height: scale(70),
-                errorBuilder: (BuildContext context, Object error,
-                    StackTrace? stackTrace) {
-                  return SizedBox(
-                    width: scale(100),
-                    child: Icon(
-                      Icons.image_not_supported,
-                      color: white,
-                      size: scale(45),
-                    ),
-                  );
-                },
+        return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/new_detail', arguments: {
+              'details': NewsItem(
+                title: widget.title,
+                description: widget.description,
+                date: widget.date,
+                imageUrl: widget.imageUrl,
+                toggleFavorite: widget.toggleFavorite,
               ),
-              Container(
-                width: scale(240),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: TextStyle(
+              'toggleFavorite': widget.toggleFavorite
+            });
+          },
+          child: Container(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.network(
+                  widget.imageUrl,
+                  width: scale(100),
+                  height: scale(70),
+                  errorBuilder: (BuildContext context, Object error,
+                      StackTrace? stackTrace) {
+                    return SizedBox(
+                      width: scale(100),
+                      child: Icon(
+                        Icons.image_not_supported,
                         color: white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: scale(16),
+                        size: scale(45),
                       ),
-                    ),
-                    Text(
-                      widget.description,
-                      style: TextStyle(
-                        color: grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: scale(12),
-                      ),
-                    ),
-                    Text(
-                      dateString,
-                      style: TextStyle(
-                        color: grey,
-                        fontWeight: FontWeight.w300,
-                        fontSize: scale(12),
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
-              ),
-              BlocBuilder<FavoritesCubit, FavoritesState>(
-                builder: (context, state) {
-                  late IconData favIcon;
+                Container(
+                  width: scale(240),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                          color: white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: scale(16),
+                        ),
+                      ),
+                      Text(
+                        widget.description,
+                        style: TextStyle(
+                          color: grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: scale(12),
+                        ),
+                      ),
+                      Text(
+                        dateString,
+                        style: TextStyle(
+                          color: grey,
+                          fontWeight: FontWeight.w300,
+                          fontSize: scale(12),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    late IconData favIcon;
 
-                  if (state.favorites
-                      .any((element) => element.title == widget.title)) {
-                    favIcon = Icons.favorite;
-                  } else {
-                    favIcon = Icons.favorite_border;
-                  }
-                  return GestureDetector(
-                    onTap: widget.toggleFavorite,
-                    child: Icon(favIcon, color: white),
-                  );
-                },
-              )
-            ],
+                    if (state.favorites
+                        .any((element) => element.title == widget.title)) {
+                      favIcon = Icons.favorite;
+                    } else {
+                      favIcon = Icons.favorite_border;
+                    }
+                    return GestureDetector(
+                      onTap: widget.toggleFavorite,
+                      child: Icon(favIcon, color: white),
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         );
       },
