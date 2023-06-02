@@ -9,7 +9,6 @@ class NewsCubit extends Cubit<NewsState> {
   NewsCubit()
       : super(NewsState(
           news: [],
-          favorites: [],
           isLoadingMore: false,
           isFinished: false,
           page: 2,
@@ -88,24 +87,5 @@ class NewsCubit extends Cubit<NewsState> {
       emit(state.copyWith(news: state.news, isLoadingMore: state.isLoadingMore));
       throw Exception(e);
     }
-  }
-
-  toggleFavorite(NewsItem item) {
-    late int index;
-    if (state.favorites.any((favorite) {
-      index = state.favorites.indexOf(favorite);
-      return favorite.title == item.title;
-    })) {
-      state.favorites.removeAt(index);
-    } else {
-      state.favorites.add(item);
-    }
-
-    emit(state.copyWith(favorites: state.favorites));
-  }
-
-  deleteFavorite(int index) {
-    state.favorites.removeAt(index);
-    emit(state.copyWith(favorites: state.favorites));
   }
 }

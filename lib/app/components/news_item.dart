@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/scale.dart';
+import 'package:news_app/app/state/favorites/favorites_cubit.dart';
 import 'package:news_app/app/state/news/news_cubit.dart';
 
 class NewsItem extends StatefulWidget {
@@ -38,14 +39,6 @@ class _NewsItemState extends State<NewsItem> {
 
     return BlocBuilder<NewsCubit, NewsState>(
       builder: (context, state) {
-        late IconData favIcon;
-
-        if (state.favorites.any((element) => element.title == widget.title)) {
-          favIcon = Icons.favorite;
-        } else {
-          favIcon = Icons.favorite_border;
-        }
-
         return Container(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,8 +48,7 @@ class _NewsItemState extends State<NewsItem> {
                 widget.imageUrl,
                 width: scale(100),
                 height: scale(70),
-                errorBuilder:
-                    (BuildContext context, Object error,
+                errorBuilder: (BuildContext context, Object error,
                     StackTrace? stackTrace) {
                   return SizedBox(
                     width: scale(100),
@@ -101,9 +93,21 @@ class _NewsItemState extends State<NewsItem> {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: widget.toggleFavorite,
-                child: Icon(favIcon, color: white),
+              BlocBuilder<FavoritesCubit, FavoritesState>(
+                builder: (context, state) {
+                  late IconData favIcon;
+
+                  if (state.favorites
+                      .any((element) => element.title == widget.title)) {
+                    favIcon = Icons.favorite;
+                  } else {
+                    favIcon = Icons.favorite_border;
+                  }
+                  return GestureDetector(
+                    onTap: widget.toggleFavorite,
+                    child: Icon(favIcon, color: white),
+                  );
+                },
               )
             ],
           ),

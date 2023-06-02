@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/routes.dart';
+import 'package:news_app/app/state/everything/everything_cubit.dart';
+import 'package:news_app/app/state/favorites/favorites_cubit.dart';
 import 'package:news_app/app/state/news/news_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,6 +14,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: ((context) => NewsCubit())),
+        BlocProvider(create: ((context) => FavoritesCubit())),
+        BlocProvider(create: ((context) => EverythingCubit())),
       ],
       child: Builder(
         builder: (context) => MaterialApp(

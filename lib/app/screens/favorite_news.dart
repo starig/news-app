@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/app/components/news_item.dart';
 import 'package:news_app/app/config/scale.dart';
+import 'package:news_app/app/state/favorites/favorites_cubit.dart';
 import 'package:news_app/app/state/news/news_cubit.dart';
 
 class FavoriteNewsScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _FavoriteNewsScreenState extends State<FavoriteNewsScreen> {
       appBar: AppBar(
         title: Text('Закладки'),
       ),
-      body: BlocBuilder<NewsCubit, NewsState>(
+      body: BlocBuilder<FavoritesCubit, FavoritesState>(
         builder: (context, state) {
           return SingleChildScrollView(
             child: ListView.builder(
@@ -37,7 +38,7 @@ class _FavoriteNewsScreenState extends State<FavoriteNewsScreen> {
                       date: state.favorites[index].publishedAt ?? '',
                       imageUrl: state.favorites[index].urlToImage ?? '',
                       toggleFavorite: () {
-                        context.read<NewsCubit>().deleteFavorite(index);
+                        context.read<FavoritesCubit>().deleteFavorite(index);
                       },
                     ),
                   );

@@ -1,26 +1,27 @@
-part of 'news_cubit.dart';
+part of 'everything_cubit.dart';
 
-class NewsState {
+
+class EverythingState {
   List<NewsItem> news;
   bool isLoadingMore;
   bool isFinished;
   int page;
 
-  NewsState({
+  EverythingState({
     required this.news,
     required this.isLoadingMore,
     required this.page,
     required this.isFinished,
   });
 
-  NewsState copyWith({
+  EverythingState copyWith({
     List<NewsItem>? news,
     bool? isLoadingMore,
     int? page,
     bool? isFinished,
     List<NewsItem>? favorites,
   }) {
-    return NewsState(
+    return EverythingState(
       news: news ?? this.news,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       isFinished: isFinished ?? this.isFinished,
@@ -28,3 +29,4 @@ class NewsState {
     );
   }
 }
+
