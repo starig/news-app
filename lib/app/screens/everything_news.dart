@@ -49,7 +49,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(color: grey),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -78,7 +78,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
                           return Container(
                             margin: EdgeInsets.only(top: scale(25)),
                             child: Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(color: grey),
                             ),
                           );
                         }

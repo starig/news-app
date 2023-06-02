@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/app/components/news_item.dart';
 import 'package:news_app/app/config/colors.dart';
+import 'package:news_app/app/config/helpers.dart';
 import 'package:news_app/app/config/scale.dart';
 import 'package:news_app/app/state/favorites/favorites_cubit.dart';
 
@@ -25,13 +26,7 @@ class _NewDetailScreenState extends State<NewDetailScreen> {
     String description = widget.details.description;
     String imgUrl = widget.details.imageUrl;
 
-    DateFormat inputFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-    DateTime dateTime = inputFormat.parse(widget.details.date);
-
-    DateFormat outputFormat = DateFormat("HH:mm dd.MM.yyyy");
-
-    String dateString = outputFormat.format(dateTime);
+    String dateString = stringToDatetime(widget.details.date);
 
     return Scaffold(
       appBar: AppBar(
