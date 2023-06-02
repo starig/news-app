@@ -34,7 +34,7 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
   void initState() {
     super.initState();
     _func = context.read<NewsCubit>().getInitialList();
-    // startPeriodicRequest();
+    startPeriodicRequest();
     _scrollController.addListener(() async {
       if (_scrollController.offset >=
           _scrollController.position.maxScrollExtent &&
