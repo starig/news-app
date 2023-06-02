@@ -18,7 +18,6 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
   late Future _func;
   final ScrollController _scrollController = ScrollController();
 
-
   _loadMore() async {
     await context.read<EverythingCubit>().loadMoreNews();
   }
@@ -29,7 +28,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
     _func = context.read<EverythingCubit>().getInitialList();
     _scrollController.addListener(() async {
       if (_scrollController.offset >=
-          _scrollController.position.maxScrollExtent &&
+              _scrollController.position.maxScrollExtent &&
           !_scrollController.position.outOfRange) {
         await _loadMore();
       }
@@ -71,7 +70,7 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount:
-                      state.news.length + (state.isLoadingMore ? 1 : 0),
+                          state.news.length + (state.isLoadingMore ? 1 : 0),
                       itemBuilder: (context, index) {
                         if (index == state.news.length - 1 &&
                             !state.isFinished) {
@@ -87,12 +86,13 @@ class _EverythingNewsListState extends State<EverythingNewsList> {
                               vertical: scale(12), horizontal: scale(8)),
                           child: NewsItem(
                             title: state.news[index].title ?? '',
-                            description:
-                            state.news[index].description ?? '',
+                            description: state.news[index].description ?? '',
                             date: state.news[index].publishedAt ?? '',
                             imageUrl: state.news[index].urlToImage ?? '',
                             toggleFavorite: () {
-                              context.read<FavoritesCubit>().toggleFavorite(state.news[index]);
+                              context
+                                  .read<FavoritesCubit>()
+                                  .toggleFavorite(state.news[index]);
                             },
                           ),
                         );

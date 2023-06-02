@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
                   builder: (context) {
                     return NewDetailScreen(
                       details: (settings.arguments
-                      as Map<String, dynamic>)["details"],
+                          as Map<String, dynamic>)["details"],
                       toggleFavorite: (settings.arguments
-                      as Map<String, dynamic>)["toggleFavorite"],
+                          as Map<String, dynamic>)["toggleFavorite"],
                     );
                   },
                 );

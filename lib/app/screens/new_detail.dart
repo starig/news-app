@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:news_app/app/components/news_item.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/helpers.dart';
 import 'package:news_app/app/config/scale.dart';
-import 'package:news_app/app/state/favorites/favorites_cubit.dart';
 
 class NewDetailScreen extends StatefulWidget {
   final NewsItem details;
@@ -31,27 +28,6 @@ class _NewDetailScreenState extends State<NewDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Новость'),
-        actions: [
-          BlocBuilder<FavoritesCubit, FavoritesState>(
-            builder: (context, state) {
-              late IconData favIcon;
-              if (state.favorites
-                  .any((element) => element.title == title)) {
-                favIcon = Icons.favorite;
-              } else {
-                favIcon = Icons.favorite_border;
-              }
-              return Padding(
-                padding: EdgeInsets.only(right: scale(16)),
-                child: GestureDetector(
-                  onTap: widget.toggleFavorite,
-                  child: Icon(favIcon, color: white),
-                ),
-              );
-            },
-          )
-
-        ],
       ),
       body: Padding(
         padding:

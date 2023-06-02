@@ -13,7 +13,6 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(
@@ -39,10 +38,7 @@ class _NewsScreenState extends State<NewsScreen> {
               ),
             ),
             body: TabBarView(
-              children: [
-                HeadlineNewsList(),
-                EverythingNewsList()
-              ],
+              children: [HeadlineNewsList(), EverythingNewsList()],
             ),
           ),
         );

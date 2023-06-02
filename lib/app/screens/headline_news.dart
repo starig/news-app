@@ -37,7 +37,7 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
     startPeriodicRequest();
     _scrollController.addListener(() async {
       if (_scrollController.offset >=
-          _scrollController.position.maxScrollExtent &&
+              _scrollController.position.maxScrollExtent &&
           !_scrollController.position.outOfRange) {
         await _loadMore();
       }
@@ -58,13 +58,15 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(color: grey,),
+            child: CircularProgressIndicator(
+              color: grey,
+            ),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             return Center(
               child: Text(
-                'Error during loading data ${snapshot.error}',
+                'Error during loading data',
                 style: TextStyle(color: red, fontWeight: FontWeight.w600),
               ),
             );
@@ -77,7 +79,7 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount:
-                      state.news.length + (state.isLoadingMore ? 1 : 0),
+                          state.news.length + (state.isLoadingMore ? 1 : 0),
                       itemBuilder: (context, index) {
                         if (index == state.news.length - 1 &&
                             !state.isFinished) {
@@ -93,12 +95,13 @@ class _HeadlineNewsListState extends State<HeadlineNewsList> {
                               vertical: scale(12), horizontal: scale(8)),
                           child: NewsItem(
                             title: state.news[index].title ?? '',
-                            description:
-                            state.news[index].description ?? '',
+                            description: state.news[index].description ?? '',
                             date: state.news[index].publishedAt ?? '',
                             imageUrl: state.news[index].urlToImage ?? '',
                             toggleFavorite: () {
-                              context.read<FavoritesCubit>().toggleFavorite(state.news[index]);
+                              context
+                                  .read<FavoritesCubit>()
+                                  .toggleFavorite(state.news[index]);
                             },
                           ),
                         );
