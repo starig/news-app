@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/app/config/colors.dart';
 import 'package:news_app/app/config/routes.dart';
-import 'package:news_app/state/news/news_cubit.dart';
+import 'package:news_app/app/state/news/news_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

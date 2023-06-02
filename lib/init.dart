@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/app/config/colors.dart';
-import 'package:news_app/screens/top_headlines.dart';
+import 'package:news_app/app/screens/favorite_news.dart';
+import 'package:news_app/app/screens/top_headlines.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
@@ -20,9 +21,7 @@ class _InitialScreenState extends State<InitialScreen> {
 
   static const List<Widget> _screens = <Widget>[
     TopHeadlinesScreen(),
-    Center(
-      child: Text('zakladki'),
-    )
+    FavoriteNewsScreen()
   ];
 
   @override
