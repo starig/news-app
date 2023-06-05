@@ -38,8 +38,6 @@ class MyApp extends StatelessWidget {
                     return NewDetailScreen(
                       details: (settings.arguments
                           as Map<String, dynamic>)["details"],
-                      toggleFavorite: (settings.arguments
-                          as Map<String, dynamic>)["toggleFavorite"],
                     );
                   },
                 );

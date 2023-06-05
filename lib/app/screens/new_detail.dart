@@ -6,10 +6,9 @@ import 'package:news_app/app/config/scale.dart';
 
 class NewDetailScreen extends StatefulWidget {
   final NewsItem details;
-  final void Function() toggleFavorite;
 
   const NewDetailScreen(
-      {Key? key, required this.details, required this.toggleFavorite})
+      {Key? key, required this.details})
       : super(key: key);
 
   @override
