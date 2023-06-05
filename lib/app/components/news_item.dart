@@ -43,7 +43,6 @@ class _NewsItemState extends State<NewsItem> {
                 imageUrl: widget.imageUrl,
                 toggleFavorite: widget.toggleFavorite,
               ),
-              'toggleFavorite': widget.toggleFavorite
             });
           },
           child: Container(
